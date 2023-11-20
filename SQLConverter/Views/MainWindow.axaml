@@ -1,0 +1,123 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:SQLConverter.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:SQLConverter.Views"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="SQLConverter.Views.MainWindow"
+		x:DataType="vm:MainViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="SQLConverter">
+	<Window.Styles>
+		<Style Selector="Window">
+			<Setter Property="Width" Value="700" />
+			<Setter Property="Height" Value="700" />
+		</Style>
+		<Style Selector="Border.container">
+			<Setter Property="Padding" Value="15" />
+		</Style>
+
+		<Style Selector="TextBox.input">
+			<Setter Property="Background" Value="#CCFFE5" />
+			<Setter Property="Foreground" Value="#000000" />
+			<Setter Property="MaxHeight" Value="Infinity" />
+			<Setter Property="AcceptsReturn" Value="True" />
+			<Setter Property="BorderBrush" Value="#242424" />
+			<Setter Property="CornerRadius" Value="8" />
+			<Setter Property="SelectionBrush" Value="{StaticResource SelectionBrush}" />
+			<Setter Property="TextWrapping" Value="Wrap"/>
+		</Style>
+		<Style Selector="TextBox.input /template/ Border#PART_BorderElement">
+			<Setter Property="BorderThickness" Value="0" />
+		</Style>
+		<Style Selector="TextBox.input:pointerover /template/ Border#PART_BorderElement">
+			<Setter Property="Background" Value="#CCFFE5" />
+		</Style>
+		<Style Selector="TextBox.input:focus /template/ Border#PART_BorderElement">
+			<Setter Property="Background" Value="#CCFFE5" />
+		</Style>
+		<Style Selector="TextBox.input.invalid">
+			<Setter Property="Background" Value="{StaticResource InvalidColor}" />
+		</Style>
+		<Style Selector="TextBox.input.invalid:focus /template/ Border#PART_BorderElement">
+			<Setter Property="Background" Value="{StaticResource InvalidColor}" />
+		</Style>
+
+		<Style Selector="Border.row">
+			<Setter Property="Height" Value="22" />
+		</Style>
+
+		<Style Selector="Border.formatButtonWrap">
+			<Setter Property="Padding" Value="0 30" />
+		</Style>
+		<Style Selector="Border.formatButtonWrap Button">
+			<Setter Property="Padding" Value="25 10" />
+			<Setter Property="HorizontalAlignment" Value="Center" />
+			<Setter Property="FontSize" Value="20" />
+		</Style>
+		<Style Selector="Button.CopyPasteButton">
+			<Setter Property="Margin" Value="5"/>
+			<Setter Property="Background" Value="White"/>
+			<Setter Property="Foreground" Value="Black"/>
+			<Setter Property="Opacity" Value="0.5"/>
+			<Setter Property="VerticalAlignment" Value="Top"/>
+			<Setter Property="HorizontalAlignment" Value="Right"/>
+		</Style>
+
+		<Style Selector="Border.presenter">
+			<Setter Property="Background" Value="#CCFFE5" />
+			<Setter Property="Padding" Value="0" />
+			<Setter Property="CornerRadius" Value="8" />
+		</Style>
+
+		<Style Selector="ScrollViewer.jsonWrap">
+			<Setter Property="VerticalAlignment" Value="Top" />
+		</Style>
+
+		<Style Selector="FlyoutPresenter.alert">
+			<Setter Property="MaxWidth" Value="1000" />
+			<Setter Property="MinHeight" Value="20" />
+			<Setter Property="Background" Value="{StaticResource InvalidColor}" />
+			<Setter Property="Foreground" Value="#eee" />
+			<Setter Property="Padding" Value="18 6" />
+			<Setter Property="Margin" Value="0 5 0 0" />
+			<Setter Property="FontFamily" Value="{StaticResource MainFontFamily}" />
+			<Setter Property="FontSize" Value="15" />
+		</Style>
+	</Window.Styles>
+
+	<Border  Classes="container">
+		<Grid RowDefinitions="80 Auto *">
+			<Border Grid.Row="0" Name="InputWrap">
+				<Panel>
+					<TextBox Name="Input" Text="{Binding BeforeSql}" Classes="input"/>
+					<Button Command="{Binding PasteCommand}" Classes="CopyPasteButton" Content="粘贴">
+						<PathIcon Data="{StaticResource copy_regular}" />
+					</Button>
+				</Panel>
+
+
+				<FlyoutBase.AttachedFlyout>
+					<Flyout Placement="BottomEdgeAlignedRight"
+                            Content="TESTINVALID"
+                            FlyoutPresenterClasses="alert" />
+				</FlyoutBase.AttachedFlyout>
+			</Border>
+			<Border Grid.Row="1" Classes="formatButtonWrap">
+				<Button Name="FormatButton"
+                        Content="Convert"
+						Command="{Binding ConvertCommand}"
+                         />
+			</Border>
+			<Border Grid.Row="2" Classes="presenter">
+				<Panel>
+					<TextBox TextWrapping="Wrap" Text="{Binding AfterSql}" ></TextBox>
+					<Button Classes="CopyPasteButton" Command="{Binding CopyCommand}">
+						<PathIcon Data="{StaticResource clipboard_paste_regular}"/>
+					</Button>
+				</Panel>
+			</Border>
+		</Grid>
+	</Border>
+</Window>

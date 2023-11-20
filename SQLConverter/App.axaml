@@ -1,0 +1,30 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="SQLConverter.App"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+	<Application.Resources>
+		<FontFamily x:Key="MainFontFamily">resm:JsonFormatter.Assets.Fonts?assembly=JsonFormatter#Maven Pro</FontFamily>
+		<FontFamily x:Key="CodeFontFamily">resm:JsonFormatter.Assets.Fonts?assembly=JsonFormatter#Fira Code</FontFamily>
+
+		<SolidColorBrush x:Key="PrimaryColor">#66C3CC</SolidColorBrush>
+		<SolidColorBrush x:Key="GreyColor">#BCBC8F</SolidColorBrush>
+		<SolidColorBrush x:Key="NullColor">#BCBC8F</SolidColorBrush>
+		<SolidColorBrush x:Key="StringColor">#C8A162</SolidColorBrush>
+		<SolidColorBrush x:Key="NumberColor">#ED94C0</SolidColorBrush>
+		<SolidColorBrush x:Key="BooleanColor">#6C95EB</SolidColorBrush>
+		<SolidColorBrush x:Key="SelectionBrush">#FFCCE5</SolidColorBrush>
+	  <SolidColorBrush x:Key="SelectionForegroundBrush">#08335E</SolidColorBrush>
+		<SolidColorBrush x:Key="InvalidColor">#4A2421</SolidColorBrush>
+	</Application.Resources>
+	<Application.Styles>
+		<Style Selector="Button">
+			<Setter Property="Background" Value="#354F85" />
+			<Setter Property="Foreground" Value="#eee" />
+			<Setter Property="BorderBrush" Value="#182C57" />
+		</Style>
+		<FluentTheme />
+		<StyleInclude Source="avares://SQLConverter/Styles/Icons.axaml" />
+	</Application.Styles>
+</Application>
