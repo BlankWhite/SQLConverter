@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-	  <PublishAot>true</PublishAot>
+	  <PublishAot  Condition="'$(Configuration)' != 'Debug'">true</PublishAot>
 	  <TrimMode>line</TrimMode>
 	  <InvariantGlobalization>true</InvariantGlobalization>
 	  <OptimizationPreference>Size</OptimizationPreference>
